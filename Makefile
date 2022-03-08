@@ -1,3 +1,4 @@
+CONFIG_MODULE_SIG=n
 all: ixx_usb ixx_pci
 
 ixx_usb:
