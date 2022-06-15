@@ -621,7 +621,7 @@ static int ixx_usbfd_handle_canmsg(struct ixx_usb_device *dev,
 	}
 	
 	can_frame->len =
-		can_dlc2len((flags & IXXAT_USBFD_MSG_FLAGS_DLC)
+		can_fd_dlc2len((flags & IXXAT_USBFD_MSG_FLAGS_DLC)
 		>> 16);
 
 	if (flags & IXXAT_USBFD_MSG_FLAGS_OVR) {
@@ -889,7 +889,7 @@ static int ixx_usbfd_encode_msg(struct ixx_usb_device *dev, struct sk_buff *skb,
 			can_msg.flags |= IXXAT_USBFD_MSG_FLAGS_FDR;
 	}
 
-	can_msg.flags |= (can_len2dlc(cf->len) << 16) &
+	can_msg.flags |= (can_fd_len2dlc(cf->len) << 16) &
 		IXXAT_USBFD_MSG_FLAGS_DLC;
 
 	can_msg.flags = cpu_to_le32(can_msg.flags);
